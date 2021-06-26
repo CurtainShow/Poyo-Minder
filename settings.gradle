@@ -1,0 +1,2 @@
+rootProject.name = "Poyo'Minder"
+include ':app'

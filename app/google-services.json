@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "474263657542",
+    "project_id": "poyo-minder-auth",
+    "storage_bucket": "poyo-minder-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474263657542:android:c1fd87f3764b2415cafe47",
+        "android_client_info": {
+          "package_name": "com.example.pill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474263657542-be6j4gtpjs6flk17rh3ktefftula41mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwRvdvulrUgy2z4NLwsTKGQaZTrK6DqoI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474263657542-be6j4gtpjs6flk17rh3ktefftula41mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474263657542:android:d210ce6df3942a0acafe47",
+        "android_client_info": {
+          "package_name": "com.example.poyominder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474263657542-be6j4gtpjs6flk17rh3ktefftula41mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwRvdvulrUgy2z4NLwsTKGQaZTrK6DqoI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474263657542-be6j4gtpjs6flk17rh3ktefftula41mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
