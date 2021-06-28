@@ -14,7 +14,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.845" />
 
     <Button
         android:id="@+id/logout_button"
@@ -35,11 +36,12 @@
         android:id="@+id/print_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Nom d'utilisateur :"
+        android:layout_marginTop="88dp"
+        android:text="Bonjour,"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,11 +49,11 @@
         android:id="@+id/print_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="108dp"
         android:text="E-mail :"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/print_username" />
 
@@ -59,9 +61,12 @@
         android:id="@+id/data_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="88dp"
+        android:textColor="@color/blue_onboarding2"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toEndOf="@+id/print_username"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,9 +74,9 @@
         android:id="@+id/data_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="108dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toEndOf="@+id/print_email"
         app:layout_constraintTop_toBottomOf="@+id/print_username" />
 
@@ -88,20 +93,28 @@
 
     <Button
         android:id="@+id/button_add_medicine"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/plus"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/button_plus_new"
         app:backgroundTint="#FFFFFF"
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_ruban"
-        app:layout_constraintVertical_bias="0.998" />
+        app:layout_constraintVertical_bias="0.95" />
+
+    <ImageView
+        android:id="@+id/bottom_ruban"
+        android:layout_width="413dp"
+        android:layout_height="62dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@color/blue_used"
+        tools:ignore="InvalidId,MissingConstraints" />
 
     <TextView
         android:id="@+id/layout_name_Main"
@@ -118,5 +131,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/top_ruban"
         app:layout_constraintVertical_bias="0.538" />
+
+    <TextView
+        android:id="@+id/complement_onboarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Voici vos médicaments pour la journée :"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/print_username" />
+
+    <Button
+        android:id="@+id/button_home"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/home"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_ruban"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_resume"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/clipboard2"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_ruban"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/Accueil_text"
+        android:layout_width="49dp"
+        android:layout_height="17dp"
+        android:text="Accueil"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_home"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/Resume_text"
+        android:layout_width="55dp"
+        android:layout_height="20dp"
+        android:text="Résumé"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_resume"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -188,17 +188,18 @@
 
             <CheckBox
                 android:id="@+id/checkbox_matin"
-                android:layout_width="wrap_content"
+                android:layout_width="92dp"
                 android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
                 android:text="@string/matin"
-                android:onClick="onCheckboxClicked"/>
+                android:textColorLink="@color/blue_used" />
 
             <CheckBox
                 android:id="@+id/checkbox_midi"
-                android:layout_width="wrap_content"
+                android:layout_width="86dp"
                 android:layout_height="wrap_content"
-                android:text="@string/midi"
-                android:onClick="onCheckboxClicked"/>
+                android:onClick="onCheckboxClicked"
+                android:text="@string/midi" />
 
             <CheckBox
                 android:id="@+id/checkbox_soir"

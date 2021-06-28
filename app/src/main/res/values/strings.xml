@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Poyo\'Minder</string>
+
     <string name="header_de_la_page">Header de la page</string>
     <string name="nouveau_m_dicament">Nouveau médicament</string>
     <string name="m_dicament">Médicament</string>
