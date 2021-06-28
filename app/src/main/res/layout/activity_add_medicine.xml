@@ -11,6 +11,7 @@
         android:layout_width="412dp"
         android:layout_height="60dp"
         android:background="@color/blue_onboarding2"
+        android:contentDescription="@string/header_de_la_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,7 @@
         android:fontFamily="sans-serif-black"
         android:foregroundGravity="center"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Nouveau Médicament"
+        android:text="@string/nouveau_m_dicament"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/top_ruban"
@@ -85,7 +86,7 @@
             android:id="@+id/title_nom_medicament"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Médicament"
+            android:text="@string/m_dicament"
             android:textColor="@color/blue_onboarding2"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -96,9 +97,13 @@
             android:id="@+id/name_medicament"
             android:layout_width="313dp"
             android:layout_height="wrap_content"
-            android:hint="Nom du médicament"
+            android:autofillHints="Nom du médicament"
+            android:hint="@string/nom_du_m_dicament"
+            android:inputType="text"
+            android:paddingStart="20dp"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
+            android:paddingRight="20dp"
             android:paddingBottom="10dp"
             android:textColorHighlight="@color/blue_onboarding2"
             android:textIsSelectable="false"
@@ -125,23 +130,26 @@
             android:id="@+id/title_type_medicament"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type de médicament"
+            android:text="@string/type_de_m_dicament"
             android:textColor="@color/blue_onboarding2"
             android:textSize="20sp"
             android:textStyle="bold"
             android:translationX="20dp"
             android:translationY="10dp" />
 
-        <EditText
-            android:id="@+id/type_medicament"
-            android:layout_width="313dp"
+        <Spinner
+            android:id="@+id/spinner_medicament"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="Nom du médicament"
+            android:paddingStart="20dp"
             android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
             android:translationX="20dp"
             android:translationY="15dp" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -163,23 +171,43 @@
             android:id="@+id/title_schedule_medicament"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jour de prise du médicament"
+            android:text="@string/p_riode_de_prise"
             android:textColor="@color/blue_onboarding2"
             android:textSize="20sp"
             android:textStyle="bold"
             android:translationX="20dp"
             android:translationY="10dp" />
 
-        <EditText
-            android:id="@+id/schedule_medicament"
-            android:layout_width="313dp"
+
+        <LinearLayout
+            android:id="@+id/linear_checkboxes"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nom du médicament"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:translationX="20dp"
-            android:translationY="15dp" />
+            android:translationX="40dp"
+            android:translationY="10dp">
+
+            <CheckBox
+                android:id="@+id/checkbox_matin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/matin"
+                android:onClick="onCheckboxClicked"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_midi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/midi"
+                android:onClick="onCheckboxClicked"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_soir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/soir"
+                android:onClick="onCheckboxClicked"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -200,13 +228,22 @@
             android:id="@+id/title_reminder_medicament"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rappel"
+            android:text="@string/rappel"
             android:textColor="@color/blue_onboarding2"
             android:textSize="20sp"
             android:textStyle="bold"
             android:translationX="20dp"
             android:translationY="10dp" />
 
+        <EditText
+            android:hint="@string/ecrivez_ici_votre_commentaire"
+            android:id="@+id/rappel_input"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:translationX="20dp"
+            android:translationY="20dp"
+            android:inputType="text"
+            android:autofillHints="Commentaires" />
 
     </LinearLayout>
 

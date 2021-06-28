@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +25,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     private TextView register, forgot_password;
     private EditText editTextEmail, editTextPassword;
@@ -69,7 +72,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         mAuth = FirebaseAuth.getInstance();
+
+
+
+
     }
+
+
 
     @Override
     public void onClick(View v) {

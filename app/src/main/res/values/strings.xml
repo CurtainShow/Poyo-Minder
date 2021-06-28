@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Poyo\'Minder</string>
+    <string name="header_de_la_page">Header de la page</string>
+    <string name="nouveau_m_dicament">Nouveau médicament</string>
+    <string name="m_dicament">Médicament</string>
+    <string name="nom_du_m_dicament">Nom du médicament</string>
+    <string name="type_de_m_dicament">Type de médicament</string>
+    <string name="p_riode_de_prise">Période de prise</string>
+    <string name="matin">Matin</string>
+    <string name="rappel">Rappel</string>
+    <string name="midi">Midi</string>
+    <string name="soir">Soir</string>
+    <string name="ecrivez_ici_votre_commentaire">Ecrivez ici votre commentaire</string>
+    <string-array name="types_medicament">
+        <item>Gélule</item>
+        <item>Comprimé</item>
+        <item>Pommade</item>
+    </string-array>
 </resources>
