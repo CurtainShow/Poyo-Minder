@@ -1,8 +1,5 @@
 package com.example.poyominder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -13,15 +10,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.Map;
 
-public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
+public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
+
+    private String userID;
 
     private TextView return_login;
     private EditText editTextEmail, editTextUsername, editTextPassword, editTextConfirm_password;
@@ -29,6 +31,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBar_register;
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         //Initialisation des variables
         return_login = (TextView) findViewById(R.id.return_login);
@@ -55,7 +59,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.return_login:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
@@ -115,8 +119,31 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
 
         progressBar_register.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((Task<AuthResult> task) -> {
+
+            if (task.isSuccessful()) {
+
+                User user = new User(username, email, password);
+
+                Toast.makeText(RegisterUser.this, "Compte crée avec succès !", Toast.LENGTH_LONG).show();
+                userID = mAuth.getCurrentUser().getUid();
+                DocumentReference documentReference = fStore.collection("users").document(userID);
+                Map<String, Object> map = new HashMap<>();
+                map.put("username", user.username);
+                map.put("email", user.email);
+                map.put("id", userID);
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(map);
+                progressBar_register.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(this, MainActivity.class));
+            } else {
+                System.out.println("Non");
+                Toast.makeText(RegisterUser.this, "Echec lors de la création du compte !", Toast.LENGTH_LONG).show();
+                progressBar_register.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        /*mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //@org.jetbrains.annotations.NotNull after Non NUll
@@ -124,15 +151,26 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         if (task.isSuccessful()) {
                             User user = new User(username, email, password);
 
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            HashMap map = new HashMap();
+                            map.put("username", user.username);
+                            map.put("email", user.email);
+                            map.put("id", FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                            FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                            //FirebaseDatabase.getInstance().getReference("Users")
+                            //        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            //        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        System.out.println("OUI");
                                         Toast.makeText(RegisterUser.this, "Compte crée avec succès !", Toast.LENGTH_LONG).show();
                                         progressBar_register.setVisibility(View.INVISIBLE);
                                     }else{
+                                        System.out.println("Non");
                                         Toast.makeText(RegisterUser.this, "Echec lors de la création du compte !", Toast.LENGTH_LONG).show();
                                         progressBar_register.setVisibility(View.INVISIBLE);
                                     }
@@ -144,6 +182,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                             progressBar_register.setVisibility(View.INVISIBLE);
                         }
                     }
-                });
+        });*/
     }
 }

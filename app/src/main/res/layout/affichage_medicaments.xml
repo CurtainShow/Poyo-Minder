@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -18,36 +20,41 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/ImageMedicament"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:id="@+id/image_recycleur_Medicament"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="ImageDuMedicament"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/NomMedicament"
-                android:layout_width="317dp"
-                android:layout_height="35dp"
+                android:id="@+id/nom_recycleur_Medicament"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:gravity="center|start"
                 android:text="NomMedicament"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ImageMedicament"
+                app:layout_constraintStart_toEndOf="@+id/image_recycleur_Medicament"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/DescriptionMedicament"
-                android:layout_width="317dp"
-                android:layout_height="34dp"
+                android:id="@+id/description_recycleur_Medicament"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:gravity="center|start"
                 android:text="Description"
-                app:layout_constraintStart_toEndOf="@+id/ImageMedicament"
-                app:layout_constraintTop_toBottomOf="@+id/NomMedicament" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_recycleur_Medicament"
+                app:layout_constraintTop_toBottomOf="@+id/nom_recycleur_Medicament" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
