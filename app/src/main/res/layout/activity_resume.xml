@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResumeActivity">
+
+    <Button
+        android:id="@+id/back_to_main_resume"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/back_main"
+        app:backgroundTint="#FFFFFF"
+        app:backgroundTintMode="src_in"
+        app:layout_constraintBottom_toBottomOf="@+id/top_ruban"
+        app:layout_constraintEnd_toEndOf="@+id/top_ruban"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_ruban"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <ImageView
+        android:id="@+id/top_ruban"
+        android:layout_width="414dp"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@color/blue_onboarding2"
+        tools:ignore="InvalidId,MissingConstraints"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/button_add_medicine_resume"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/button_plus_new"
+        app:backgroundTint="#FFFFFF"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_ruban"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <ImageView
+        android:id="@+id/bottom_ruban"
+        android:layout_width="413dp"
+        android:layout_height="62dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@color/blue_used"
+        tools:ignore="InvalidId,MissingConstraints" />
+
+    <TextView
+        android:id="@+id/layout_name_Main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:foregroundGravity="center"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="Résumé -"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/top_ruban"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_ruban"
+        app:layout_constraintVertical_bias="0.538" />
+
+    <Button
+        android:id="@+id/button_home_resume"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/home"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_ruban"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_resume_resume"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/clipboard2"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_ruban"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/Accueil_text"
+        android:layout_width="49dp"
+        android:layout_height="17dp"
+        android:text="Accueil"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_home_resume"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/Resume_text"
+        android:layout_width="55dp"
+        android:layout_height="20dp"
+        android:text="Résumé"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_resume_resume"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/data_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toEndOf="@+id/layout_name_Main"
+        app:layout_constraintTop_toTopOf="@+id/layout_name_Main" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_ruban"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_ruban"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WIP - Résumé"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button_add_medicine_resume"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_ruban"
+        app:layout_constraintVertical_bias="0.961" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

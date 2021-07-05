@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     GoogleApiClient mGoogleApiClient;
     private TextView register, forgot_password;
     private EditText editTextEmail, editTextPassword;
-    private Button login_button, google_button_signin;
+    private Button login_button;
     private ProgressBar progressBar_login;
     private FirebaseAuth mAuth;
 
@@ -53,9 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         forgot_password.setOnClickListener(this);
 
         progressBar_login = (ProgressBar) findViewById(R.id.progressBar_login);
-
-        google_button_signin = (Button) findViewById(R.id.button_google_signin);
-        google_button_signin.setOnClickListener(this);
 
         // Modification du 22/06
 
@@ -84,10 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.forgot_password:
                 startActivity(new Intent(this, ForgotPassword.class));
-                break;
-
-            case R.id.button_google_signin:
-                loginGoogle();
                 break;
         }
     }
@@ -133,9 +126,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     } else {
                         user.sendEmailVerification();
                         Toast.makeText(MainActivity.this, "Vérifier votre email avant de vous connecté!", Toast.LENGTH_LONG).show();
+                        progressBar_login.setVisibility(View.INVISIBLE);
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Echec de connexion, vérifier vos identifiants !", Toast.LENGTH_LONG).show();
+                    progressBar_login.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -171,12 +166,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 //}
 
-    private void loginGoogle() {
-        Intent viewIntent =
-                new Intent("android.intent.action.VIEW",
-                        Uri.parse("https://www.gouvernement.fr/info-coronavirus/carte-et-donnees"));
-        startActivity(viewIntent);
-    }
 
 }
 

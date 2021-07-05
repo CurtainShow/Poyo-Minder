@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -64,6 +65,7 @@ public class AddMedicine extends AppCompatActivity implements AdapterView.OnItem
             public void onClick(View v) {
                 onComplete();
                 startActivity(new Intent(AddMedicine.this, ProfileActivity.class));
+                Toast.makeText(AddMedicine.this, "Votre médicament a bien été créer !", Toast.LENGTH_LONG).show();
             }
         });
 

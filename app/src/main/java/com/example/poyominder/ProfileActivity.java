@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<Medicine> medicineListMidday = new ArrayList<>();
     private ArrayList<Medicine> medicineListEvening = new ArrayList<>();
 
-    private Button logout_button, button_add_medicine, covid_stats_button, vaccination_button;
+    private Button logout_button, button_add_medicine, covid_stats_button, vaccination_button, button_resume;
     private ImageView emptyViewEvening;
     private ImageView emptyViewMidday;
     private ImageView emptyViewMorning;
@@ -67,6 +67,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         vaccination_button = (Button) findViewById(R.id.vaccination_button);
         vaccination_button.setOnClickListener(this);
+
+        button_resume = (Button) findViewById(R.id.button_resume);
+        button_resume.setOnClickListener(this);
 
         emptyViewEvening = (ImageView) findViewById(R.id.image_empty_recyclerview_soir);
         emptyViewMidday = (ImageView) findViewById(R.id.image_empty_recyclerview_midi);
@@ -218,6 +221,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.vaccination_button:
                 Intent viewIntentVaccin = new Intent("android.intent.action.VIEW", Uri.parse("https://www.sante.fr/cf/centres-vaccination-covid.html"));
                 startActivity(viewIntentVaccin);
+                break;
+            case R.id.button_resume:
+                startActivity(new Intent(this, ResumeActivity.class));
                 break;
         }
     }

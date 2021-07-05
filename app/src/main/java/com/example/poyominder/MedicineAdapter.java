@@ -45,24 +45,43 @@ class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
         holder.medocLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("touchède");
+                //System.out.println("touchède");
                 for (Integer i = 0; i < medoc.prescription.size(); i ++) {
-                    System.out.println(type);
-                    System.out.println("presc" + medoc.prescription.get(i));
+                    //System.out.println(type);
+                    //System.out.println("presc" + medoc.prescription.get(i));
+
                     if (medoc.prescription.get(i).equals(type)) {
                         medoc.hasPrisSonMedoc.set(i, true);
                         FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("planning").document(medoc.id).update("hasPrisSonMedoc", medoc.hasPrisSonMedoc);
 
-                        String imageUri = "https://image.flaticon.com/icons/png/512/1828/1828640.png";
+                        String imageUri = "https://i.goopics.net/XwQJV.png";
                         Picasso.with(mContext).load(imageUri).into(holder.imageHasPrisSonMedoc);
 
-                        System.out.println("modifiède");
+                        //System.out.println("modifiède");
                     }
                 }
+                System.out.println("New print" + medoc.hasPrisSonMedoc);
+                System.out.println("New print" + medoc.prescription);
+                System.out.println(FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("planning").document(String.valueOf(medoc.hasPrisSonMedoc)));
             }
         });
 
+
+
         for (Integer i = 0; i < medoc.prescription.size(); i ++) {
+            if (medoc.prescription.get(i).equals(type)) {
+                if (medoc.hasPrisSonMedoc.get(i).equals(true)) {
+                    String imageUri = "https://i.goopics.net/XwQJV.png";
+                    Picasso.with(mContext).load(imageUri).into(holder.imageHasPrisSonMedoc);
+                } else {
+                    String imageUri = "https://image.flaticon.com/icons/png/512/753/753345.png";
+                    Picasso.with(mContext).load(imageUri).into(holder.imageHasPrisSonMedoc);
+                }
+            }
+        }
+
+
+        /*for (Integer i = 0; i < medoc.prescription.size(); i ++) {
             if (medoc.hasPrisSonMedoc.get(i).equals(true)) {
                 String imageUri = "https://image.flaticon.com/icons/png/512/1828/1828640.png";
                 Picasso.with(mContext).load(imageUri).into(holder.imageHasPrisSonMedoc);
@@ -73,7 +92,7 @@ class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
                 
             }
 
-        }
+        }*/
 
 
 
