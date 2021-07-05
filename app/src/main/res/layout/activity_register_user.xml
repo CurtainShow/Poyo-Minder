@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.987" />
 
     <TextView
-        android:id="@+id/se_connecte"
+        android:id="@+id/inscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Inscription"
@@ -171,7 +171,7 @@
         app:layout_constraintVertical_bias="0.44" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageInscription"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"

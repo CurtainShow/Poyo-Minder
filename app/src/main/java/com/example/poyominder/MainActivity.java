@@ -7,6 +7,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,11 +31,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     GoogleApiClient mGoogleApiClient;
-    private TextView register, forgot_password;
+    private TextView register, forgot_password, se_connecter;
     private EditText editTextEmail, editTextPassword;
     private Button login_button;
+    private TabLayout tabLayout;
+    private ImageView imageConnexion;
     private ProgressBar progressBar_login;
     private FirebaseAuth mAuth;
+    float v=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
+
+        se_connecter = (TextView) findViewById(R.id.se_connecte);
+
+        imageConnexion = (ImageView) findViewById(R.id.imageConnexion);
 
         login_button = (Button) findViewById(R.id.login);
         login_button.setOnClickListener(this);
@@ -54,16 +63,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressBar_login = (ProgressBar) findViewById(R.id.progressBar_login);
 
-        // Modification du 22/06
 
-        //GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        //        .requestEmail()
-        //        .build();
+        tabLayout = findViewById(R.id.tab_layout);
 
-        //mGoogleApiClient = new GoogleApiClient.Builder(this)
-        //        .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
-        //        .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-        //        .build();
+
+        tabLayout.setTranslationY(300);
+        editTextEmail.setTranslationY(300);
+        editTextPassword.setTranslationY(300);
+        forgot_password.setTranslationY(300);
+        progressBar_login.setTranslationY(300);
+        login_button.setTranslationY(300);
+        register.setTranslationY(300);
+        se_connecter.setTranslationY(300);
+        imageConnexion.setTranslationY(300);
+
+        tabLayout.setAlpha(v);
+        editTextEmail.setAlpha(v);
+        editTextPassword.setAlpha(v);
+        forgot_password.setAlpha(v);
+        progressBar_login.setAlpha(v);
+        login_button.setAlpha(v);
+        register.setAlpha(v);
+        se_connecter.setAlpha(v);
+        imageConnexion.setAlpha(v);
+
+        imageConnexion.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(50).start();
+        tabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(150).start();
+        se_connecter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(300).start();
+        editTextEmail.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(450).start();
+        editTextPassword.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
+        forgot_password.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(750).start();
+        progressBar_login.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
+        login_button.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(900).start();
+        register.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(1050).start();
+
 
 
         mAuth = FirebaseAuth.getInstance();

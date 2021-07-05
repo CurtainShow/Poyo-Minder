@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,10 +27,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     private String userID;
 
-    private TextView return_login;
+    private TextView return_login, inscription;
     private EditText editTextEmail, editTextUsername, editTextPassword, editTextConfirm_password;
     private Button register_button;
     private ProgressBar progressBar_register;
+    private TabLayout tabLayout;
+    private ImageView imageInscription;
+
+    float v=0;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fStore;
@@ -49,12 +55,49 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         register_button = (Button) findViewById(R.id.register_button);
         register_button.setOnClickListener(this);
 
+        inscription = (TextView) findViewById(R.id.inscription);
+
+        imageInscription = (ImageView) findViewById(R.id.imageInscription);
+
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextUsername = (EditText) findViewById(R.id.username);
         editTextPassword = (EditText) findViewById(R.id.password);
         editTextConfirm_password = (EditText) findViewById(R.id.confirm_password);
 
         progressBar_register = (ProgressBar) findViewById(R.id.progressBar_register);
+
+
+        tabLayout = findViewById(R.id.tab_layout);
+
+        tabLayout.setTranslationY(300);
+        inscription.setTranslationY(300);
+        editTextEmail.setTranslationY(300);
+        editTextUsername.setTranslationY(300);
+        editTextPassword.setTranslationY(300);
+        editTextConfirm_password.setTranslationY(300);
+        register_button.setTranslationY(300);
+        return_login.setTranslationY(300);
+        imageInscription.setTranslationY(300);
+
+        tabLayout.setAlpha(v);
+        inscription.setAlpha(v);
+        editTextEmail.setAlpha(v);
+        editTextUsername.setAlpha(v);
+        editTextPassword.setAlpha(v);
+        editTextConfirm_password.setAlpha(v);
+        register_button.setAlpha(v);
+        return_login.setAlpha(v);
+        imageInscription.setAlpha(v);
+
+        imageInscription.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(50).start();
+        tabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
+        inscription.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(250).start();
+        editTextEmail.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+        editTextUsername.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(550).start();
+        editTextPassword.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(700).start();
+        editTextConfirm_password.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(850).start();
+        register_button.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(1000).start();
+        return_login.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(1150).start();
     }
 
     @Override

@@ -15,6 +15,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterUser" />
         <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
