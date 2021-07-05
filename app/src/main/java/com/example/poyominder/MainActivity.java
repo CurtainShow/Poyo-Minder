@@ -1,9 +1,7 @@
 package com.example.poyominder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -13,25 +11,28 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    GoogleApiClient mGoogleApiClient;
     private TextView register, forgot_password;
     private EditText editTextEmail, editTextPassword;
     private Button login_button, google_button_signin;
     private ProgressBar progressBar_login;
-
-    GoogleApiClient mGoogleApiClient;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.register:
                 startActivity(new Intent(this, RegisterUser.class));
 
@@ -85,9 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, ForgotPassword.class));
                 break;
 
-            //case R.id.button_google_signin:
-            //    loginGoogle();
-            //    break;
+            case R.id.button_google_signin:
+                loginGoogle();
+                break;
         }
     }
 
@@ -126,23 +127,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user.isEmailVerified()){
+                    if (user.isEmailVerified()) {
+                        updateUser(user.getUid());
                         //Redirect to profile
-                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                    }else{
+                    } else {
                         user.sendEmailVerification();
                         Toast.makeText(MainActivity.this, "Vérifier votre email avant de vous connecté!", Toast.LENGTH_LONG).show();
                     }
-                }else{
-                    Toast.makeText(MainActivity.this, "Echec de connexion, vérifier vos identifiants !",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Echec de connexion, vérifier vos identifiants !", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    //private void loginGoogle() {
-    //    Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-    //    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-    //}
+    public void updateUser(String id) {
+        FirebaseFirestore.getInstance().collection("users").document(id).collection("planning").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (Integer i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            DocumentSnapshot document = queryDocumentSnapshots.getDocuments().get(i);
+                            Medicine medoc = document.toObject(Medicine.class);
+                            if (Timestamp.now().toDate().compareTo(medoc.until.toDate()) > 0) {
+                                FirebaseFirestore.getInstance().collection("users").document(id).collection("planning").document(medoc.id).delete();
+                            } else if (Timestamp.now().toDate().getDay() != medoc.lastUpdated.toDate().getDay() || Timestamp.now().toDate().getMonth() != medoc.lastUpdated.toDate().getMonth()) {
+                                for (Integer k = 0; k < medoc.hasPrisSonMedoc.size(); k++) {
+                                    //TODO ajouter if pour checker si pas pris checker le last updated avec le nombre de jours
+                                    medoc.hasPrisSonMedoc.set(k, false);
+                                }
+                                FirebaseFirestore.getInstance().collection("users").document(id).collection("planning").document(medoc.id).update("hasPrisSonMedoc", medoc.hasPrisSonMedoc);
+                                FirebaseFirestore.getInstance().collection("users").document(id).collection("planning").document(medoc.id).update("lastUpdated", Timestamp.now());
+                            }
+                            if (i == queryDocumentSnapshots.size() - 1) {
+                                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                            }
+                        }
+                        if (queryDocumentSnapshots.size() == 0) {
+                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        }
+                    }
+                });
+    }
+//}
+
+    private void loginGoogle() {
+        Intent viewIntent =
+                new Intent("android.intent.action.VIEW",
+                        Uri.parse("https://www.gouvernement.fr/info-coronavirus/carte-et-donnees"));
+        startActivity(viewIntent);
+    }
 
 }
+

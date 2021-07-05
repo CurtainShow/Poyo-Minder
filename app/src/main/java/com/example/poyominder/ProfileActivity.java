@@ -2,6 +2,7 @@ package com.example.poyominder;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +49,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<Medicine> medicineListMidday = new ArrayList<>();
     private ArrayList<Medicine> medicineListEvening = new ArrayList<>();
 
-    private Button logout_button, button_add_medicine;
+    private Button logout_button, button_add_medicine, covid_stats_button, vaccination_button;
+    private ImageView emptyViewEvening;
+    private ImageView emptyViewMidday;
+    private ImageView emptyViewMorning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         button_add_medicine = (Button) findViewById(R.id.button_add_medicine);
         button_add_medicine.setOnClickListener(this);
+
+        covid_stats_button = (Button) findViewById(R.id.covid_stats_button);
+        covid_stats_button.setOnClickListener(this);
+
+        vaccination_button = (Button) findViewById(R.id.vaccination_button);
+        vaccination_button.setOnClickListener(this);
+
+        emptyViewEvening = (ImageView) findViewById(R.id.image_empty_recyclerview_soir);
+        emptyViewMidday = (ImageView) findViewById(R.id.image_empty_recyclerview_midi);
+        emptyViewMorning = (ImageView) findViewById(R.id.image_empty_recyclerview_matin);
 
         recyclerMatin = findViewById(R.id.recycleur_view_matin);
         recyclerMidi = findViewById(R.id.recycleur_view_midi);
@@ -82,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mAuth = FirebaseAuth.getInstance();
 
         Query query = firebaseFirestore.collection("users").document(userID).collection("planning").whereArrayContains("prescription", "morning");
-        MedicineAdapter medAdapterMorning = new MedicineAdapter(this, medicineList);
+        MedicineAdapter medAdapterMorning = new MedicineAdapter(this, medicineList, "morning");
 
         recyclerMatin.setHasFixedSize(true);
         recyclerMatin.setLayoutManager(new LinearLayoutManager(this));
@@ -99,6 +113,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         medicineList.add(medoc);
                         medAdapterMorning.notifyDataSetChanged();
                     }
+                    if (medAdapterMorning.getItemCount() == 0) {
+                        recyclerSoir.setVisibility(View.GONE);
+                        emptyViewMorning.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        recyclerSoir.setVisibility(View.VISIBLE);
+                        emptyViewMorning.setVisibility(View.GONE);
+                    }
                 }
             }
         });
@@ -106,7 +128,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         // Recycleur Midi
 
         Query queryMidday = firebaseFirestore.collection("users").document(userID).collection("planning").whereArrayContains("prescription", "midday");
-        MedicineAdapter medAdapterMidday = new MedicineAdapter(this, medicineListMidday);
+        MedicineAdapter medAdapterMidday = new MedicineAdapter(this, medicineListMidday, "midday");
 
         recyclerMidi.setHasFixedSize(true);
         recyclerMidi.setLayoutManager(new LinearLayoutManager(this));
@@ -123,6 +145,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         medicineListMidday.add(medoc);
                         medAdapterMidday.notifyDataSetChanged();
                     }
+                    if (medAdapterMidday.getItemCount() == 0) {
+                        recyclerSoir.setVisibility(View.GONE);
+                        emptyViewMidday.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        recyclerSoir.setVisibility(View.VISIBLE);
+                        emptyViewMidday.setVisibility(View.GONE);
+                    }
                 }
             }
         });
@@ -130,7 +160,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         // Recycleur Soir
 
         Query queryEvening = firebaseFirestore.collection("users").document(userID).collection("planning").whereArrayContains("prescription", "evening");
-        MedicineAdapter medAdapterEvening = new MedicineAdapter(this, medicineListEvening);
+        MedicineAdapter medAdapterEvening = new MedicineAdapter(this, medicineListEvening, "evening");
 
         recyclerSoir.setHasFixedSize(true);
         recyclerSoir.setLayoutManager(new LinearLayoutManager(this));
@@ -147,6 +177,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         medicineListEvening.add(medoc);
                         medAdapterEvening.notifyDataSetChanged();
                     }
+                    if (medAdapterEvening.getItemCount() == 0) {
+                        recyclerSoir.setVisibility(View.GONE);
+                        emptyViewEvening.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        recyclerSoir.setVisibility(View.VISIBLE);
+                        emptyViewEvening.setVisibility(View.GONE);
+                    }
                 }
             }
         });
@@ -154,7 +192,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         // End FireStore Recycleur view
 
         final TextView usernameTextView = (TextView) findViewById(R.id.data_username);
-        //final TextView emailTextView = (TextView) findViewById(R.id.data_email);
 
         FirebaseFirestore.getInstance().collection("users").document(userID).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -173,6 +210,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.button_add_medicine:
                 startActivity(new Intent(this, AddMedicine.class));
+                break;
+            case R.id.covid_stats_button:
+                Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("https://www.gouvernement.fr/info-coronavirus/carte-et-donnees"));
+                startActivity(viewIntent);
+                break;
+            case R.id.vaccination_button:
+                Intent viewIntentVaccin = new Intent("android.intent.action.VIEW", Uri.parse("https://www.sante.fr/cf/centres-vaccination-covid.html"));
+                startActivity(viewIntentVaccin);
+                break;
         }
     }
 }

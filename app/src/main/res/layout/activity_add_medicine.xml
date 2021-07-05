@@ -212,8 +212,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
@@ -237,14 +238,54 @@
             android:translationY="10dp" />
 
         <EditText
-            android:hint="@string/ecrivez_ici_votre_commentaire"
             android:id="@+id/rappel_input"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:translationX="20dp"
-            android:translationY="20dp"
+            android:layout_width="313dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:autofillHints="Commentaires"
+            android:hint="@string/ecrivez_ici_votre_commentaire"
             android:inputType="text"
-            android:autofillHints="Commentaires" />
+            android:translationX="20dp"
+            android:translationY="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/edit_text_bg"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <TextView
+            android:id="@+id/ultil_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_de_fin"
+            android:textColor="@color/blue_onboarding2"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:translationX="20dp"
+            android:translationY="10dp" />
+
+        <Button
+            android:id="@+id/date_Picker_Untill_Button"
+            style="?android:spinnerStyle"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:onClick="openDatePicker"
+            android:text="JAN 01 2021"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
