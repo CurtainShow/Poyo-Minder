@@ -38,6 +38,7 @@
         app:layout_constraintVertical_bias="0" />
 
     <TextView
+        android:id="@+id/skip_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="30dp"
@@ -56,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:text="Your"
+        android:text="Votre"
         android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
-        android:text="Safety"
+        android:text="Sûreté"
         android:textColor="@color/black"
         android:textSize="56sp"
         android:textStyle="bold"
@@ -83,10 +84,10 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="233dp"
+        android:layout_height="124dp"
         android:layout_marginTop="5dp"
-        android:text="Everything you will experience will be absolutely fresh"
+        android:text="Parce que nous avons tous des trous de mémoire, des oublis, des moments de fatigue, cette application vous garantit de toujours penser à vous, quelle que soit la situation"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +120,7 @@
         android:layout_margin="16dp"
         android:backgroundTint="@color/white"
         android:backgroundTintMode="add"
-        android:src="@drawable/back_main"
+        android:src="@drawable/right_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"

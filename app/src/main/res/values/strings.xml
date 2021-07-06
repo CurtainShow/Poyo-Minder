@@ -17,5 +17,7 @@
         <item>Gélule</item>
         <item>Comprimé</item>
         <item>Pommade</item>
+        <item>Sirop</item>
+        <item>Antibiotique</item>
     </string-array>
 </resources>

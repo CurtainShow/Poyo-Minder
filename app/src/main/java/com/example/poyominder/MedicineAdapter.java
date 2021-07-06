@@ -109,6 +109,14 @@ class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
             String imageUri = "https://image.flaticon.com/icons/png/512/822/822175.png";
             Picasso.with(mContext).load(imageUri).into(holder.imageMedoc);
         }
+        else if (medoc.type.equals("Sirop")) {
+            String imageUri = "https://image.flaticon.com/icons/png/512/3845/3845006.png";
+            Picasso.with(mContext).load(imageUri).into(holder.imageMedoc);
+        }
+        else if (medoc.type.equals("Antibiotique")) {
+            String imageUri = "https://image.flaticon.com/icons/png/512/4189/4189111.png";
+            Picasso.with(mContext).load(imageUri).into(holder.imageMedoc);
+        }
 
     }
 
